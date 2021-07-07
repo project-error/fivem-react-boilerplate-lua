@@ -14,8 +14,6 @@ module.exports = {
   },
 
   devServer: (devServerConfig) => {
-    console.dir(devServerConfig)
-
     if (process.env.IN_GAME_DEV) {
      // Used for in-game dev mode
      devServerConfig.writeToDisk = true
