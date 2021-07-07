@@ -25,13 +25,14 @@ while in-game. Utilizing `craco` to override CRA, we can have hot
 builds that just require a resource restart instead of a full
 production build
 
-This version of the
-boilerplate is meant for the CfxLua runtime.
+This version of the boilerplate is meant for the CfxLua runtime.
 
 ## Requirements
 * [Node > v10.6](https://nodejs.org/en/)
 * [Yarn](https://yarnpkg.com/getting-started/install) (Preferred but not required)
 
+*A basic understanding of the modern web development workflow. If you don't 
+know this yet, React might not be for you just yet.*
 
 ## Getting Started
 
