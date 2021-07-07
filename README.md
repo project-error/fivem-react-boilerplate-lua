@@ -20,8 +20,7 @@ with React in NUI. It contains several helpful utilities and
 is bootstrapped using `create-react-app`. It is for both browser
 and in-game based development workflows.
 
-This boilerplate also allows for helpful development workflows
-while in-game. Utilizing `craco` to override CRA, we can have hot
+For in-game workflows, Utilizing `craco` to override CRA, we can have hot
 builds that just require a resource restart instead of a full
 production build
 
