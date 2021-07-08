@@ -1,0 +1,30 @@
+name: Tagged Release
+on:
+  push:
+    tags:
+      - "v*"
+jobs:
+  create-tagged-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref }}
+      - name: Get tag
+        run: echo ::set-output name=VERSION_TAG::${GITHUB_REF/refs\/tags\//}
+        id: get_tag
+      - name: 'Setup Node.js'
+        uses: 'actions/setup-node@v1'
+        with:
+          node-version: 14.x
+      - name: Create release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          title: React/Lua Boilerplate - ${{ steps.get_tag.outputs.VERSION_TAG }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: false
+        id: auto_release
+          
