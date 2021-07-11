@@ -26,5 +26,5 @@ function debugPrint(...)
   end
   local msgTemplate = '^3[%s]^0%s'
   local finalMsg = msgTemplate:format(currentResourceName, appendStr)
-  print(msg)
+  print(finalMsg)
 end
