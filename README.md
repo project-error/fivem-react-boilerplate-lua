@@ -133,7 +133,7 @@ const MyComp: React.FC = () => {
 
 This is a simple NUI focused wrapper around the standard `fetch` API.
 This is the main way to accomplish active NUI data fetching 
-or for trigger NUI callbacks in the game scripts.
+or to trigger NUI callbacks in the game scripts.
 
 When using this, you must always at least callback using `{}`
 in the gamescripts.
