@@ -22,7 +22,7 @@ export async function fetchNui<T = any>(eventName: string, data?: any): Promise<
 
   const resp = await fetch(`https://${resourceName}/${eventName}`, options);
 
-  const respFormatted = resp.json()
+  const respFormatted = await resp.json()
 
   return respFormatted
 }
