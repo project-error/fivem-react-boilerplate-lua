@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import './App.css'
-import {useNuiEvent} from "../hooks/useNuiEvent";
 import {debugData} from "../utils/debugData";
 import {fetchNui} from "../utils/fetchNui";
-import {useExitListener} from "../hooks/useExitListener";
 
 // This will set the NUI to visible if we are
 // developing in browser
@@ -36,16 +34,7 @@ interface ReturnData {
 }
 
 const App: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false)
   const [clientData, setClientData] = useState<ReturnData | null>(null)
-
-  useNuiEvent<boolean>('setVisible', (data) => {
-    // This is our handler for the setVisible action.
-    console.log(data)
-    setIsVisible(data)
-  })
-
-  useExitListener(setIsVisible)
 
   const handleGetClientData = () => {
     fetchNui<ReturnData>('getClientData').then(retData => {
@@ -60,7 +49,7 @@ const App: React.FC = () => {
 
   return (
     <div className="nui-wrapper">
-      <div className='popup-thing' style={{ visibility: isVisible ? 'visible' : 'hidden' }}>
+      <div className='popup-thing'>
         <div>
           <h1>This is the NUI Popup!</h1>
           <p>Exit with the escape key</p>
