@@ -18,7 +18,7 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "cross-env PUBLIC_URL=/ craco start",
     "start:game": "cross-env IN_GAME_DEV=1 craco start",
     "build": "craco build",
     "test": "craco test",
