@@ -43,7 +43,7 @@
     ]
   },
   "devDependencies": {
-    "craco": "^0.0.3",
+    "@craco/craco": "^6.4.3",
     "cross-env": "^7.0.3"
   }
 }
