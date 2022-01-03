@@ -77,7 +77,7 @@ if the convar is set this will print out to the console.
 The convar is dependent on the name given to the resource.
 It follows this format `YOUR_RESOURCE_NAME-debugMode`
 
-To turn on debugMode add `+setr YOUR_RESOURCE_NAME-debugMode 1` to 
+To turn on debugMode add `setr YOUR_RESOURCE_NAME-debugMode 1` to 
 your server.cfg or use the `setr` console command instead.
 
 Signature (Replicates `print`)
