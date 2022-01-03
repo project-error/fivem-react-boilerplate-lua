@@ -19,5 +19,6 @@ server_script "server/**/*"
 
 files {
   'web/build/index.html',
-  'web/build/**/*'
+  'web/build/static/**',
+  'web/build/asset-manifest.json'
 }
