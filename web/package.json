@@ -20,7 +20,7 @@
   "scripts": {
     "start": "cross-env PUBLIC_URL=/ craco start",
     "start:game": "cross-env IN_GAME_DEV=1 craco start",
-    "build": "craco build",
+    "build": "rimraf build && craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -45,5 +45,6 @@
   "devDependencies": {
     "@craco/craco": "^6.4.3",
     "cross-env": "^7.0.3",
+    "rimraf": "^3.0.2"
   }
 }
