@@ -9,15 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: ${{ github.ref }}
       - name: Get tag
-        run: echo ::set-output name=VERSION_TAG::${GITHUB_REF/refs\/tags\//}
+        run: echo "VERSION_TAG=${GITHUB_REF/refs\/tags\//}" >> "$GITHUB_OUTPUT"
         id: get_tag
       - name: 'Setup Node.js'
-        uses: 'actions/setup-node@v1'
+        uses: 'actions/setup-node@v4'
         with:
           node-version: 20.x
       - name: Create release
