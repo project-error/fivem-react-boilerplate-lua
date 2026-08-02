@@ -1,5 +1,4 @@
-import { MutableRefObject, RefObject, useEffect, useRef } from "react";
-import { noop } from "../utils/misc";
+import { useEffect, useEffectEvent } from "react";
 
 interface NuiMessageData<T = unknown> {
   action: string;
@@ -7,6 +6,15 @@ interface NuiMessageData<T = unknown> {
 }
 
 type NuiHandlerSignature<T> = (data: T) => void;
+
+const isNuiMessage = <T>(data: unknown): data is NuiMessageData<T> => {
+  return (
+    typeof data === "object" &&
+    data !== null &&
+    "action" in data &&
+    typeof data.action === "string"
+  );
+};
 
 /**
  * A hook that manage events listeners for receiving data from the client scripts
@@ -22,24 +30,17 @@ type NuiHandlerSignature<T> = (data: T) => void;
 
 export const useNuiEvent = <T = unknown>(
   action: string,
-  handler: (data: T) => void,
+  handler: NuiHandlerSignature<T>,
 ) => {
-  const savedHandler = useRef<(data: T) => void>(noop as (data: T) => void);
-
-  // Make sure we handle for a reactive handler
-  useEffect(() => {
-    savedHandler.current = handler;
-  }, [handler]);
+  const onMessage = useEffectEvent((data: T) => {
+    handler(data);
+  });
 
   useEffect(() => {
-    const eventListener = (event: MessageEvent<NuiMessageData<T>>) => {
-      const { action: eventAction, data } = event.data;
+    const eventListener = (event: MessageEvent<unknown>) => {
+      if (!isNuiMessage<T>(event.data) || event.data.action !== action) return;
 
-      if (savedHandler.current) {
-        if (eventAction === action) {
-          savedHandler.current(data);
-        }
-      }
+      onMessage(event.data.data);
     };
 
     window.addEventListener("message", eventListener);
