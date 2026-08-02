@@ -1,5 +1,11 @@
 import { isEnvBrowser } from "./misc";
 
+declare global {
+  interface Window {
+    GetParentResourceName?: () => string;
+  }
+}
+
 /**
  * Simple wrapper around fetch API tailored for CEF/NUI use. This abstraction
  * can be extended to include AbortController if needed or if the response isn't
@@ -27,8 +33,8 @@ export async function fetchNui<T = unknown>(
 
   if (isEnvBrowser() && mockData) return mockData;
 
-  const resourceName = (window as any).GetParentResourceName
-    ? (window as any).GetParentResourceName()
+  const resourceName = window.GetParentResourceName
+    ? window.GetParentResourceName()
     : "nui-frame-app";
 
   const resp = await fetch(`https://${resourceName}/${eventName}`, options);
